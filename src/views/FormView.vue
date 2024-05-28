@@ -12,7 +12,7 @@
         </div>
           <div class="d-flex justify-content-between">
             <button type="submit" class="btn btn-primary">Guardar</button>
-            <button type="button" class="btn btn-danger">Eliminar</button>
+            <button type="button" class="btn btn-danger" @click="handleDelete">Eliminar</button>
           </div>
       </form>
     </div>
@@ -24,6 +24,7 @@ import { useRoute, useRouter } from 'vue-router';
 
 const route = useRoute();
 const postId = route.params.id;
+const router = useRouter();
 
 const post = ref({
   title: '',
@@ -44,6 +45,15 @@ const handleSubmit = async () => {
       await axios.put(`https://jsonplaceholder.typicode.com/posts/${postId}`, post.value);
   } else { 
     await axios.post('https://jsonplaceholder.typicode.com/posts', post.value)
+  }
+}
+
+const handleDelete = async () => {
+  try {
+    await axios.delete(`https://jsonplaceholder.typicode.com/posts/${postId}`);
+    router.push('/posts');
+  } catch (error) {
+    console.error(error);
   }
 }
 </script>
