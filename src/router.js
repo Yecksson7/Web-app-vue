@@ -1,7 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import About from './components/About.vue';
 import Home from './components/Home.vue';
-import FormView from './views/FormView.vue';
+import Login from './components/Login.vue';
+import ListaTareas from './components/ListaTareas.vue';
+
+
+
 const routes = [
   {
     path: '/',
@@ -11,20 +15,36 @@ const routes = [
   {
     path: '/about',
     name: 'About',
-    component: About
+    component: About,
   },
 
-  { path: '/posts', name: 'posts', component: () => import('./views/PostView.vue') },
   
-  { path: '/post/:id', name: 'PostDetail', component: () => import('./views/PostDetail.vue') },
-  
-  { path: '/form', name: 'form', component: FormView },
-  { path: '/form/:id', component: FormView },
+
+
+  {path:'/listaTareas', name:'ListaTareas', component:ListaTareas, meta:{requiresAdmin:true}},
+  {path: '/cargarTarea', name: 'CargaTarea', component: () => import('./views/CargarTareaView.vue')},
+  {path: '/registro', name: 'registro', component: () => import('./views/LoginView.vue')},
+
 ];
 
 const router = createRouter({
   history: createWebHistory(),
   routes,
 });
+
+router.beforeEach((to, from, next)=>{
+  const user =JSON.parse(localStorage.getItem('user'));
+  if(to.matched.some(record => record.meta.requiresAdmin)){
+    if(user && user.role === 'admin'){
+      next();
+    }else{
+      next('/Home')
+    }
+  }else
+  {
+    next();
+  }
+})
+
 
 export default router;
