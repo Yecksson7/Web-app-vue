@@ -22,6 +22,10 @@ const routes = [
 
 
   {path:'/listaTareas', name:'ListaTareas', component:ListaTareas, meta:{requiresAdmin:true}},
+
+  {path: '/edit/:id', name: 'EditTarea', component: () => import('./views/EditTareaView.vue')},
+
+  
   {path: '/cargarTarea', name: 'CargaTarea', component: () => import('./views/CargarTareaView.vue')},
   {path: '/registro', name: 'registro', component: () => import('./views/LoginView.vue')},
 

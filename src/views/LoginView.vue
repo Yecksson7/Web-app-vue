@@ -47,6 +47,7 @@ const login = () => {
 <style scoped>
 
 
+
 .login-form {
   background-color: #333; /* Color de fondo oscuro */
   color: white; /* Color de texto blanco */

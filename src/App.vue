@@ -54,7 +54,7 @@ const logout = () => {
 onMounted(() => {
   checkAuth();
 
-  // Listen to the custom event for login
+  
   window.addEventListener('user-logged-in', checkAuth);
 });
 </script>

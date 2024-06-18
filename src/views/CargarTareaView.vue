@@ -31,21 +31,21 @@ const newTask = ref({
   colaborador: ''
 });
 
-let successMessage = ''; // Variable para almacenar el mensaje de éxito
+let successMessage = ''; 
 
 const post = async () => {
   try {
     const response = await axios.post('https://jsonplaceholder.typicode.com/posts', newTask.value);
     console.log('Respuesta del servidor:', response.data);
-    successMessage = 'Tarea creada exitosamente'; // Mostrar mensaje de éxito
-    resetForm(); // Reiniciar el formulario después de enviar con éxito
+    successMessage = 'Tarea creada exitosamente'; 
+    resetForm(); 
   } catch (error) {
     console.error('Error al enviar la tarea:', error);
   }
 };
 
 const resetForm = () => {
-  // Reiniciar los valores del formulario después del envío exitoso
+  
   newTask.value.titulo = '';
   newTask.value.descripcion = '';
   newTask.value.colaborador = '';
