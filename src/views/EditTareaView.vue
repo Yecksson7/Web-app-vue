@@ -6,8 +6,8 @@
           type="text"
           class="form-control"
           id="titulo"
-          v-model="task.titulo"
-          :placeholder="task.titulo"
+          v-model="task.title"
+          :placeholder="task.title"
           required
         />
       </div>
@@ -17,8 +17,8 @@
           class="form-control"
           id="descripcion"
           rows="3"
-          v-model="task.descripcion"
-          :placeholder="task.descripcion"
+          v-model="task.body"
+          :placeholder="task.body"
           required
         ></textarea>
       </div>
@@ -36,8 +36,8 @@
   const route = useRoute();
   
   const task = ref({
-    titulo: '',
-    descripcion: '',
+    title: '',
+    body: '',
     colaborador: ''
   });
   
